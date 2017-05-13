@@ -4,10 +4,12 @@
 \alias{yearn.one}
 \title{Do yearn on a single package}
 \usage{
-yearn.one(pkg)
+yearn.one(pkg, prompt = FALSE)
 }
 \arguments{
 \item{pkg}{The string with the package name}
+
+\item{prompt}{Ask user which of several options to choose}
 }
 \value{
 NULL if success, a string describing the problem ohterwise

@@ -4,12 +4,14 @@
 \alias{yearn}
 \title{Do yearn on a vector}
 \usage{
-yearn(package, success.return = FALSE)
+yearn(package, success.return = FALSE, prompt = TRUE)
 }
 \arguments{
 \item{package}{A vector of packages (could be length 1)}
 
 \item{success.return}{If FALSE, only return info on failing packages}
+
+\item{prompt}{If TRUE, ask user to choose between options.}
 }
 \value{
 A list of return strings (NULL if installed)
