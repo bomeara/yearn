@@ -1,0 +1,12 @@
+Package: yearn
+Title: Attaching and if needed installing packages
+Version: 0.0.0.9000
+Authors@R: person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre"))
+Description: Use yearn() in place of library() in scripts (in a package, of course, you should use dependencies). This will simply call require() for the package. If the package is already installed, it will just attach it. If it's not installed, it will try installing it from CRAN. If it's not on CRAN, it will try to install from github. You should also see the `needs` package (which does everything but the github bit).
+Depends: R (>= 3.3.0)
+Imports:
+githubinstall
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
