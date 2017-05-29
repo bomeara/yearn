@@ -4,17 +4,15 @@
 \alias{yearn}
 \title{Do yearn on a vector}
 \usage{
-yearn(package, success.return = FALSE, prompt = TRUE)
+yearn(package, maxdist = 0)
 }
 \arguments{
 \item{package}{A vector of packages (could be length 1)}
 
-\item{success.return}{If FALSE, only return info on failing packages}
-
-\item{prompt}{If TRUE, ask user to choose between options.}
+\item{maxdist}{The maximum distance that counts as a match}
 }
 \value{
-A list of return strings (NULL if installed)
+A list of return strings (NULL if installed); by default invisible, wrap in parens if you want to see
 }
 \description{
 Do yearn on a vector

@@ -4,15 +4,15 @@
 \alias{yearn.one}
 \title{Do yearn on a single package}
 \usage{
-yearn.one(pkg, prompt = FALSE)
+yearn.one(pkg, maxdist = 0)
 }
 \arguments{
 \item{pkg}{The string with the package name}
 
-\item{prompt}{Ask user which of several options to choose}
+\item{maxdist}{The maximum distance that counts as a match}
 }
 \value{
-NULL if success, a string describing the problem ohterwise
+NULL if success, a string describing the problem otherwise
 }
 \description{
 Do yearn on a single package
