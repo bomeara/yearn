@@ -67,7 +67,7 @@ yearn <- function(package, maxdist=0) {
 #'
 #' @details
 #' Inspired by githubinstall::gh_suggest() but allows being pickier about match
-FindClosestPackage <- function(pkg, maxdist=2, auto.select=TRUE, username.pref = c("ropensci", "rstudio", "tidyverse", "hadley", "yihui", "RcppCore", "eddelbuettel", "ropenscilabs", "hrbrmstr", "bomeara")) {
+FindClosestPackage <- function(pkg, maxdist=2, auto.select=TRUE, username.pref = c("ropensci", "rstudio", "tidyverse", "hadley", "yihui", "RcppCore", "eddelbuettel", "ropenscilabs", "hrbrmstr", "thej022214", "bomeara")) {
   githubinstall::gh_update_package_list()
   all.packages <- githubinstall::gh_list_packages()
   distances <- utils::adist(pkg, all.packages$package_name, ignore.case=TRUE)
