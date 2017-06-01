@@ -9,7 +9,7 @@ yearn(pkg, maxdist = 2, username.pref = c("cran", "ropensci", "rstudio",
   "hrbrmstr", "thej022214", "bomeara"))
 }
 \arguments{
-\item{pkg}{The package name (bare text, not in quotes)}
+\item{pkg}{The package name (bare text, NOT in quotes)}
 
 \item{maxdist}{The maximum distance that counts as a match}
 
@@ -20,4 +20,11 @@ NULL if success, a string describing the problem otherwise
 }
 \description{
 Do yearn on a single package
+}
+\details{
+See the readme file. Basically, this tries to load an installed package. If that fails, it then looks (in order) on Bioconductor, CRAN, GitHub's CRAN mirror, and other GitHub repositories for the package and installs it if it can find it.
+}
+\examples{
+yearn(TreEvo) # A package on github, not CRAN (yet)
+
 }

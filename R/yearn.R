@@ -1,8 +1,14 @@
 #' Do yearn on a single package
-#' @param pkg The package name (bare text, not in quotes)
+#' @param pkg The package name (bare text, NOT in quotes)
 #' @param maxdist The maximum distance that counts as a match
 #' @param username.pref In case of matches, user names in order of preference.
 #' @return NULL if success, a string describing the problem otherwise
+#' @export
+#' @examples
+#' yearn(TreEvo) # A package on github, not CRAN (yet)
+#'
+#' @details
+#' See the readme file. Basically, this tries to load an installed package. If that fails, it then looks (in order) on Bioconductor, CRAN, GitHub's CRAN mirror, and other GitHub repositories for the package and installs it if it can find it.
 yearn <- function(pkg, maxdist=2, username.pref = c("cran", "ropensci", "rstudio", "tidyverse", "hadley", "yihui", "RcppCore", "eddelbuettel", "ropenscilabs", "hrbrmstr", "thej022214", "bomeara")) {
   pkg <- deparse(substitute(pkg))
   failure.type <- NULL
@@ -63,7 +69,7 @@ yearn <- function(pkg, maxdist=2, username.pref = c("cran", "ropensci", "rstudio
 #' @return pkgs that match the constraints
 #' @export
 #' @examples
-#' yearn("TreEvo") # A package on github, not CRAN (yet)
+#' yearn(TreEvo) # A package on github, not CRAN (yet)
 #'
 #' @details
 #' Inspired by githubinstall::gh_suggest() but allows being pickier about match. The username.pref is based on my guesses on priority: "cran" is a mirror for packages that have been on CRAN at some point, but could have been taken off; "ropensci" and "rstudio" produce really useful packages, etc.

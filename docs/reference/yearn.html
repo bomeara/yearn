@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Do yearn on a vector — yearn • yearn</title>
+<title>Do yearn on a single package — yearn • yearn</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,33 +68,48 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Do yearn on a vector</h1>
+    <h1>Do yearn on a single package</h1>
     </div>
 
     
-    <p>Do yearn on a vector</p>
+    <p>Do yearn on a single package</p>
     
 
-    <pre class="usage"><span class='fu'>yearn</span>(<span class='no'>package</span>, <span class='kw'>maxdist</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
+    <pre class="usage"><span class='fu'>yearn</span>(<span class='no'>pkg</span>, <span class='kw'>maxdist</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>username.pref</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"cran"</span>, <span class='st'>"ropensci"</span>, <span class='st'>"rstudio"</span>,
+  <span class='st'>"tidyverse"</span>, <span class='st'>"hadley"</span>, <span class='st'>"yihui"</span>, <span class='st'>"RcppCore"</span>, <span class='st'>"eddelbuettel"</span>, <span class='st'>"ropenscilabs"</span>,
+  <span class='st'>"hrbrmstr"</span>, <span class='st'>"thej022214"</span>, <span class='st'>"bomeara"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>package</th>
-      <td><p>A vector of packages (could be length 1)</p></td>
+      <th>pkg</th>
+      <td><p>The package name (bare text, NOT in quotes)</p></td>
     </tr>
     <tr>
       <th>maxdist</th>
       <td><p>The maximum distance that counts as a match</p></td>
     </tr>
+    <tr>
+      <th>username.pref</th>
+      <td><p>In case of matches, user names in order of preference.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of return strings (NULL if installed); by default invisible, wrap in parens if you want to see</p>
+    <p>NULL if success, a string describing the problem otherwise</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>See the readme file. Basically, this tries to load an installed package. If that fails, it then looks (in order) on Bioconductor, CRAN, GitHub's CRAN mirror, and other GitHub repositories for the package and installs it if it can find it.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>yearn</span>(<span class='no'>TreEvo</span>) <span class='co'># A package on github, not CRAN (yet)</span></div><div class='output co'>#&gt; [1] "TreEvo not installed, now going to try to find it on CRAN or Bioconductor"</div><div class='output co'>#&gt; <span class='message'>Bioconductor version 3.5 (BiocInstaller 1.26.0), ?biocLite for help</span></div><div class='output co'>#&gt; <span class='message'>Installing package into ‘/usr/local/lib/R/3.4/site-library’</span>
+#&gt; <span class='message'>(as ‘lib’ is unspecified)</span></div><div class='output co'>#&gt; [1] "Installing TreEvo from CRAN failed, now trying to install from github. First trying from CRAN mirror (which includes packages formerly on CRAN). Note this is case-sensitive."</div><div class='output co'>#&gt; <span class='message'>Skipping install of 'prereg' from a github remote, the SHA1 (b8c89850) has not changed since last install.</span>
+#&gt; <span class='message'>  Use `force = TRUE` to force installation</span></div><div class='output co'>#&gt; [1] "Successfully installed TreEvo from cran mirror on github"</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -102,7 +117,11 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
