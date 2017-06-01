@@ -12,10 +12,10 @@ And then call a package you want with just
 
 ```
 library(yearn)
-yearn("ape")
+yearn("pkgdown")
 ```
 
-where `ape` is just an example of a potential package. Note that currently, unlike `library()` or `require()`, you do have to put the package name in quotes (this will be changed in a future release).
+where `pkgdown` is just an example of a potential package (one used to create the `yearn` package webpage, in fact). Note that currently, unlike `library()` or `require()`, you do have to put the package name in quotes (this will be changed in a future release).
 
 The package goes through a standard procedure when you do this:
 
