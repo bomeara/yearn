@@ -2,18 +2,22 @@
 % Please edit documentation in R/yearn.R
 \name{yearn}
 \alias{yearn}
-\title{Do yearn on a vector}
+\title{Do yearn on a single package}
 \usage{
-yearn(package, maxdist = 0)
+yearn(pkg, maxdist = 2, username.pref = c("cran", "ropensci", "rstudio",
+  "tidyverse", "hadley", "yihui", "RcppCore", "eddelbuettel", "ropenscilabs",
+  "hrbrmstr", "thej022214", "bomeara"))
 }
 \arguments{
-\item{package}{A vector of packages (could be length 1)}
+\item{pkg}{The package name (bare text, not in quotes)}
 
 \item{maxdist}{The maximum distance that counts as a match}
+
+\item{username.pref}{In case of matches, user names in order of preference.}
 }
 \value{
-A list of return strings (NULL if installed); by default invisible, wrap in parens if you want to see
+NULL if success, a string describing the problem otherwise
 }
 \description{
-Do yearn on a vector
+Do yearn on a single package
 }

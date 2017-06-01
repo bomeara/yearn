@@ -12,16 +12,17 @@ And then call a package you want with just
 
 ```
 library(yearn)
-yearn("pkgdown")
+yearn(pkgdown)
 ```
 
-where `pkgdown` is just an example of a potential package (one used to create the `yearn` package webpage, in fact). Note that currently, unlike `library()` or `require()`, you do have to put the package name in quotes (this will be changed in a future release).
+where `pkgdown` is just an example of a potential package (one used to create the `yearn` package webpage, in fact). Note that currently the package name should be a bare string, not in quotes.
 
 The package goes through a standard procedure when you do this:
 
 1) It tries to load the package with `require()`. If it works, it's done.
 2) If not, it tries to find a matching package name (case insensitive) from CRAN and Bioconductor. If you pass a `maxdist` argument to `yearn()`, it will allow up to that many spelling mismatches. By default this is zero. If it finds a match, it installs it, then tries to load it.
-3) If this fails, it looks on github. If there's one R package that matches, it simply installs it. If there are several, it picks one based on whose repository it's in: an ROpenSci repo is probably more likely to have what you want than a random fork of it a student made for a class assignment. The list of github users that are my guesses can be seen in `?FindClosestPackage`.
+3) If this fails, it looks on github. It first looks in the github CRAN mirror -- this includes packages that used to be on CRAN. It installs it there if it finds it.
+4) Otherwise, it looks elsewhere on GitHub. If there's one R package that matches, it simply installs it. If there are several, it picks one based on whose repository it's in: an ROpenSci repo is probably more likely to have what you want than a random fork of it a student made for a class assignment. The list of github users that are my guesses can be seen in `?yearn`. If you're using this for a class, you might want to add your user name to the list.
 
 This package uses some key functions from the [githubinstall](https://cran.r-project.org/web/packages/githubinstall/index.html) package on CRAN, written by Koji Makiyama, Atsushi Hayakawa, Shinya Uryu, Hiroaki Yutani, and Nagi Teramo. However, it also incorporates checking CRAN and Bioconductor first, and it does not offer the interactivity of the `githubinstall` package in cases of multiple matches (it also is pickier about spelling mismatches than `githubinstall` by default).
 

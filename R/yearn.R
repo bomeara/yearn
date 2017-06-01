@@ -1,8 +1,10 @@
 #' Do yearn on a single package
-#' @param pkg The string with the package name
+#' @param pkg The package name (bare text, not in quotes)
 #' @param maxdist The maximum distance that counts as a match
+#' @param username.pref In case of matches, user names in order of preference.
 #' @return NULL if success, a string describing the problem otherwise
-yearn.one <- function(pkg, maxdist=0) {
+yearn <- function(pkg, maxdist=2, username.pref = c("cran", "ropensci", "rstudio", "tidyverse", "hadley", "yihui", "RcppCore", "eddelbuettel", "ropenscilabs", "hrbrmstr", "thej022214", "bomeara")) {
+  pkg <- deparse(substitute(pkg))
   failure.type <- NULL
   if(!suppressWarnings(require(pkg, character.only=TRUE, quietly=TRUE))) {
     everything.installed <- utils::installed.packages()
@@ -22,39 +24,36 @@ yearn.one <- function(pkg, maxdist=0) {
       }
       suppressWarnings(utils::install.packages(pkg, quiet=FALSE, verbose=FALSE))
       if(!suppressWarnings(require(pkg, character.only=TRUE, quietly=TRUE))) {
-        print(paste("Installing", pkg, "from CRAN failed, now trying to install from github"))
-        potential.packages <- FindClosestPackage(pkg, maxdist=maxdist)
-        print(paste("Now trying to install", potential.packages, "from github"))
-        if(length(potential.packages)==1) {
-          suppressWarnings(githubinstall::githubinstall(potential.packages, ask=FALSE, quiet=FALSE))
-          new.pkg.name <- strsplit(potential.packages, '/')[[1]][2]
-          if(!suppressWarnings(require(new.pkg.name, character.only=TRUE, quietly=TRUE))) {
-            failure.type <- paste(pkg, ": installed", potential.packages, "for", pkg, "but", pkg, "not loaded")
-          } else {
-            print(paste("Successfully installed", pkg, "from", potential.packages, "on github"))
+        print(paste("Installing", pkg, "from CRAN failed, now trying to install from github. First trying from CRAN mirror (which includes packages formerly on CRAN). Note this is case-sensitive."))
+        suppressWarnings(githubinstall::githubinstall(paste0("cran/",pkg), ask=FALSE, quiet=FALSE))
+        if(!suppressWarnings(require(pkg, character.only=TRUE, quietly=TRUE))) {
+          print(paste("Successfully installed", pkg, "from cran mirror on github"))
+        } else {
+          potential.packages <- FindClosestPackage(pkg, maxdist=maxdist, username.pref=username.pref)
+          print(paste("Now trying to install", potential.packages, "from github"))
+          if(length(potential.packages)==1) {
+            suppressWarnings(githubinstall::githubinstall(potential.packages, ask=FALSE, quiet=FALSE))
+            new.pkg.name <- strsplit(potential.packages, '/')[[1]][2]
+            if(!suppressWarnings(require(new.pkg.name, character.only=TRUE, quietly=TRUE))) {
+              failure.type <- paste(pkg, ": installed", potential.packages, "for", pkg, "but", pkg, "not loaded")
+            } else {
+              print(paste("Successfully installed", pkg, "from", potential.packages, "on github"))
+            }
           }
-        }
-        if(length(potential.packages)==0) {
-          failure.type <- paste(pkg, ": no matches for", pkg)
-          print(paste("Did not successfully install", pkg))
+          if(length(potential.packages)==0) {
+            failure.type <- paste(pkg, ": no matches for", pkg)
+            print(paste("Did not successfully install", pkg))
+          }
         }
       } else {
         print(paste("Successfully installed", pkg, "from CRAN"))
       }
     }
   }
-  return(failure.type)
+  return(invisible(failure.type))
 }
 
-#' Do yearn on a vector
-#' @param package A vector of packages (could be length 1)
-#' @param maxdist The maximum distance that counts as a match
-#' @return A list of return strings (NULL if installed); by default invisible, wrap in parens if you want to see
-#' @export
-yearn <- function(package, maxdist=0) {
-  result <- sapply(package, yearn.one, maxdist=maxdist)
-  return(invisible(result))
-}
+
 
 #' Find closest matching package
 #' @param pkg A single package
@@ -67,7 +66,7 @@ yearn <- function(package, maxdist=0) {
 #' yearn("TreEvo") # A package on github, not CRAN (yet)
 #'
 #' @details
-#' Inspired by githubinstall::gh_suggest() but allows being pickier about match. The username.pref is based on my guesses on priority: "cran" is a mirror for packages that have been on CRAN at some point, but could have been taken off; "ropensci" and "rstudio" produce really useful packages, etc. 
+#' Inspired by githubinstall::gh_suggest() but allows being pickier about match. The username.pref is based on my guesses on priority: "cran" is a mirror for packages that have been on CRAN at some point, but could have been taken off; "ropensci" and "rstudio" produce really useful packages, etc.
 FindClosestPackage <- function(pkg, maxdist=2, auto.select=TRUE, username.pref = c("cran", "ropensci", "rstudio", "tidyverse", "hadley", "yihui", "RcppCore", "eddelbuettel", "ropenscilabs", "hrbrmstr", "thej022214", "bomeara")) {
   githubinstall::gh_update_package_list()
   all.packages <- githubinstall::gh_list_packages()

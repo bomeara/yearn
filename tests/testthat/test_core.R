@@ -1,6 +1,6 @@
 test_that("A package with no matches does not match", {
  options(repos="https://cloud.r-project.org/")
- result <- (yearn("Iamapackagethatdoesnotexistnorwillever"))
+ result <- (yearn(Iamapackagethatdoesnotexistnorwillever))
  expect_equal(length(result), 1)
 })
 
