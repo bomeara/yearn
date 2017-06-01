@@ -76,8 +76,8 @@
     
 
     <pre class="usage"><span class='fu'>FindClosestPackage</span>(<span class='no'>pkg</span>, <span class='kw'>maxdist</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>auto.select</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>username.pref</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"ropensci"</span>, <span class='st'>"rstudio"</span>, <span class='st'>"tidyverse"</span>, <span class='st'>"hadley"</span>, <span class='st'>"yihui"</span>,
-  <span class='st'>"RcppCore"</span>, <span class='st'>"eddelbuettel"</span>, <span class='st'>"ropenscilabs"</span>, <span class='st'>"hrbrmstr"</span>, <span class='st'>"thej022214"</span>,
+  <span class='kw'>username.pref</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"cran"</span>, <span class='st'>"ropensci"</span>, <span class='st'>"rstudio"</span>, <span class='st'>"tidyverse"</span>, <span class='st'>"hadley"</span>,
+  <span class='st'>"yihui"</span>, <span class='st'>"RcppCore"</span>, <span class='st'>"eddelbuettel"</span>, <span class='st'>"ropenscilabs"</span>, <span class='st'>"hrbrmstr"</span>, <span class='st'>"thej022214"</span>,
   <span class='st'>"bomeara"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
@@ -107,7 +107,7 @@
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Inspired by githubinstall::gh_suggest() but allows being pickier about match</p>
+    <p>Inspired by githubinstall::gh_suggest() but allows being pickier about match. The username.pref is based on my guesses on priority: "cran" is a mirror for packages that have been on CRAN at some point, but could have been taken off; "ropensci" and "rstudio" produce really useful packages, etc.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
