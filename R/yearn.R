@@ -14,7 +14,6 @@ yearn.one <- function(pkg, maxdist=0) {
     } else {
       print(paste(pkg, "not installed, now going to try to find it on CRAN or Bioconductor"))
       source("https://bioconductor.org/biocLite.R")
-      biocLite()
       on.repo <- utils::available.packages(repos=BiocInstaller::biocinstallRepos())[,"Package"]
       to.install <- on.repo[grepl(paste0('^', pkg, '$'),on.repo,ignore.case=TRUE)] #based on answer from https://stackoverflow.com/questions/39996324/case-insensitive-package-installation-ignore-case-while-installing-packages/39996637
       if(length(to.install)==1 && pkg != to.install) {
