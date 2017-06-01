@@ -12,9 +12,11 @@ yearn.one <- function(pkg, maxdist=0) {
         print(paste("You asked for", pkg, "but it's actually", matching.installed, "-- package names are case-sensitive. Loaded, but fix this in the future."))
       }
     } else {
-      print(paste(pkg, "not installed, now going to try to find it on CRAN"))
-      on.cran <- utils::available.packages()[,"Package"]
-      to.install <- on.cran[grepl(paste0('^', pkg, '$'),on.cran,ignore.case=TRUE)] #based on answer from https://stackoverflow.com/questions/39996324/case-insensitive-package-installation-ignore-case-while-installing-packages/39996637
+      print(paste(pkg, "not installed, now going to try to find it on CRAN or Bioconductor"))
+      source("https://bioconductor.org/biocLite.R")
+      biocLite()
+      on.repo <- utils::available.packages(repos=BiocInstaller::biocinstallRepos())[,"Package"]
+      to.install <- on.repo[grepl(paste0('^', pkg, '$'),on.repo,ignore.case=TRUE)] #based on answer from https://stackoverflow.com/questions/39996324/case-insensitive-package-installation-ignore-case-while-installing-packages/39996637
       if(length(to.install)==1 && pkg != to.install) {
         print(paste("You asked for", pkg, "but it's actually", matching.installed, "on CRAN. Package names are case-sensitive. Will try to load anyway, but fix this in the future."))
         pkg <- to.install

@@ -6,7 +6,9 @@ Description: You should ideally have all the packages you require for work and c
 Depends: R (>= 3.3.0)
 Imports:
     githubinstall
-Suggests: testthat
+Suggests: 
+    testthat,
+    BiocInstaller
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
