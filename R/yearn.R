@@ -31,10 +31,8 @@ yearn <- function(pkg, maxdist=2, username.pref = c("cran", "ropensci", "rstudio
       suppressWarnings(utils::install.packages(pkg, quiet=FALSE, verbose=FALSE))
       if(!suppressWarnings(require(pkg, character.only=TRUE, quietly=TRUE))) {
         print(paste("Installing", pkg, "from CRAN failed, now trying to install from github. First trying from CRAN mirror (which includes packages formerly on CRAN). Note this is case-sensitive."))
-        suppressWarnings(githubinstall::githubinstall(paste0("cran/",pkg), ask=FALSE, quiet=FALSE))
+        try(suppressWarnings(devtools::install_github(paste0("cran/",pkg), quiet=FALSE)))
         if(!suppressWarnings(require(pkg, character.only=TRUE, quietly=TRUE))) {
-          print(paste("Successfully installed", pkg, "from cran mirror on github"))
-        } else {
           potential.packages <- FindClosestPackage(pkg, maxdist=maxdist, username.pref=username.pref)
           print(paste("Now trying to install", potential.packages, "from github"))
           if(length(potential.packages)==1) {
@@ -50,6 +48,8 @@ yearn <- function(pkg, maxdist=2, username.pref = c("cran", "ropensci", "rstudio
             failure.type <- paste(pkg, ": no matches for", pkg)
             print(paste("Did not successfully install", pkg))
           }
+        } else {
+          print(paste("Successfully installed", pkg, "from cran mirror on github"))
         }
       } else {
         print(paste("Successfully installed", pkg, "from CRAN"))
