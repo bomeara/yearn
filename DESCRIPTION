@@ -1,16 +1,17 @@
 Package: yearn
 Title: Attaching and if needed installing packages
-Version: 0.0.1
+Version: 0.1-1
 Authors@R: person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre"))
-Description: You should ideally have all the packages you require for work and call them with library() or require(). However, especially in teaching, there can be a lot of hiccups: not everyone has the packages installed, they may have the case wrong, some packages might be on github, not CRAN, etc. This package explicitly allows sloppiness: it will try to find the best package that matches what you're yearning for.
+Description: This tries to attach a package if you have it; if not, it tries to install it from BioConductor or CRAN; if not available there, it tries to install it from the cran mirror on GitHub, which includes packages that have been removed from CRAN; if not available there, it looks for a matching other package on GitHub to install. Note this is sloppy practice and prone to all sorts of risks. However, there are use cases, such as quick scripting, or in a class where students already know best practices, where this can be useful. yearn was inspired by teaching in PhyloMeth, a course funded by an NSF CAREER award to the author.
 Depends: R (>= 3.3.0)
 Imports:
     githubinstall,
-    devtools
-Suggests:
-    testthat,
+    devtools,
     BiocInstaller
-License: GPL-3
+Suggests:
+    testthat
+License: GPL (>=2)
+URL: http://www.github.com/bomeara/yearn
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
