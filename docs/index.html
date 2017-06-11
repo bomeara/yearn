@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Attaching and if needed installing packages • yearn</title>
+<title>Use and if Needed Install Packages from CRAN, BioConductor, CRAN Archive, and GitHub • yearn</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -55,14 +55,19 @@ yearn(pkgdown)</code></pre>
 <p>where <code>pkgdown</code> is just an example of a potential package (one used to create the <code>yearn</code> package webpage, in fact). Note that currently the package name should be a bare string, not in quotes.</p>
 <p>The package goes through a standard procedure when you do this:</p>
 <p>1) It tries to load the package with <code>require()</code>. If it works, it’s done. 2) If not, it tries to find a matching package name (case insensitive) from CRAN and Bioconductor. If you pass a <code>maxdist</code> argument to <code><a href="reference/yearn.html">yearn()</a></code>, it will allow up to that many spelling mismatches. By default this is zero. If it finds a match, it installs it, then tries to load it. 3) If this fails, it looks on github. It first looks in the github CRAN mirror – this includes packages that used to be on CRAN. It installs it there if it finds it. 4) Otherwise, it looks elsewhere on GitHub. If there’s one R package that matches, it simply installs it. If there are several, it picks one based on whose repository it’s in: an ROpenSci repo is probably more likely to have what you want than a random fork of it a student made for a class assignment. The list of github users that are my guesses can be seen in <code><a href="reference/yearn.html">?yearn</a></code>. If you’re using this to teach a class using your software, you might want to add your user name to the list.</p>
-<p>This package uses some key functions from the <a href="https://cran.r-project.org/web/packages/githubinstall/index.html">githubinstall</a> package on CRAN, written by Koji Makiyama, Atsushi Hayakawa, Shinya Uryu, Hiroaki Yutani, and Nagi Teramo. However, it also incorporates checking CRAN and Bioconductor first, and it does not offer the interactivity of the <code>githubinstall</code> package in cases of multiple matches (it also is pickier about spelling mismatches than <code>githubinstall</code> by default).</p>
+<p>This package uses some key functions from the <a href="https://CRAN.R-project.org/package=githubinstall">githubinstall</a> package on CRAN, written by Koji Makiyama, Atsushi Hayakawa, Shinya Uryu, Hiroaki Yutani, and Nagi Teramo. However, it also incorporates checking CRAN and Bioconductor first, and it does not offer the interactivity of the <code>githubinstall</code> package in cases of multiple matches (it also is pickier about spelling mismatches than <code>githubinstall</code> by default).</p>
 <p>Again, use at your own risk. This package is chatty about potential problems and where it’s downloading packages, but it could be that you’re loading a package that has the same name of what you want but does something different, someone could have done something malicious with a package they put on GitHub, etc.</p>
 </div>
   </div>
 
   <div class="col-md-3" id="sidebar">
-    <h2>License</h2>
-<p><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></p>
+    <h2>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="http://www.github.com/bomeara/yearn">http://​www.github.com/​bomeara/​yearn</a>
+</li>
+</ul>
+<h2>License</h2>
+<p>GPL (&gt;=2)</p>
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Brian O'Meara <br><small class="roles"> Author, maintainer </small> </li>
