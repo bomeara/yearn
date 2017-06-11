@@ -79,7 +79,9 @@ yearn <- function(pkg, maxdist=2, username.pref = c("cran", "ropensci", "rstudio
 #' @return pkgs that match the constraints
 #' @export
 #' @examples
+#' \dontrun{
 #' yearn(TreEvo) # A package on github, not CRAN (yet)
+#' }
 #'
 #' @details
 #' Inspired by githubinstall::gh_suggest() but allows being pickier about match. The username.pref is based on my guesses on priority: "cran" is a mirror for packages that have been on CRAN at some point, but could have been taken off; "ropensci" and "rstudio" produce really useful packages, etc.
