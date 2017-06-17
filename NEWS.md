@@ -1,3 +1,7 @@
+# yearn 0.1.2
+
+* Now pulls in bioconductor source so users can use the biocLite() fn
+
 # yearn 0.1.1
 
 * Initial release
