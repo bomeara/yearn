@@ -6,8 +6,7 @@ Description: This tries to attach a package if you have it; if not, it tries to 
 Depends: R (>= 3.3.0)
 Imports:
     githubinstall,
-    devtools,
-    BiocInstaller
+    devtools
 Suggests:
     testthat
 License: GPL (>=2)
