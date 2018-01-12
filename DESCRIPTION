@@ -1,12 +1,13 @@
 Package: yearn
 Title: Use and if Needed Install Packages from CRAN, BioConductor, CRAN Archive, and GitHub
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: person("Brian", "O'Meara", email = "omeara.brian@gmail.com", role = c("aut", "cre"))
 Description: This tries to attach a package if you have it; if not, it tries to install it from BioConductor or CRAN; if not available there, it tries to install it from the cran mirror on GitHub, which includes packages that have been removed from CRAN; if not available there, it looks for a matching other package on GitHub to install. Note this is sloppy practice and prone to all sorts of risks. However, there are use cases, such as quick scripting, or in a class where students already know best practices, where this can be useful. yearn was inspired by teaching in PhyloMeth, a course funded by an NSF CAREER award to the author (NSF DEB-1453424).
 Depends: R (>= 3.3.0)
 Imports:
     githubinstall,
-    devtools
+    devtools,
+    BiocInstaller
 Suggests:
     testthat
 License: GPL (>=2)

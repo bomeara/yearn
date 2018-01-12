@@ -15,7 +15,7 @@ library(yearn)
 yearn(pkgdown)
 ```
 
-where `pkgdown` is just an example of a potential package (one used to create the `yearn` package webpage, in fact). Note that currently the package name should be a bare string, not in quotes.
+where `pkgdown` is just an example of a potential package (one used to create the `yearn` package webpage, in fact). Note that currently the package name should be a bare string, not in quotes. Another option, once `yearn` has been installed, is to use the `::` syntax: `yearn::yearn(pkgdown)` without having to do the library call first.
 
 The package goes through a standard procedure when you do this:
 

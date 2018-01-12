@@ -4,7 +4,7 @@
 \alias{yearn}
 \title{Do yearn on a single package}
 \usage{
-yearn(pkg, maxdist = 2, username.pref = c("cran", "ropensci", "rstudio",
+yearn(pkg, maxdist = 0, username.pref = c("cran", "ropensci", "rstudio",
   "tidyverse", "hadley", "yihui", "RcppCore", "eddelbuettel", "ropenscilabs",
   "hrbrmstr", "thej022214", "bomeara"))
 }
@@ -26,7 +26,7 @@ See the readme file. Basically, this tries to load an installed package. If that
 }
 \examples{
 \dontrun{
-yearn(TreEvo) # A package on github, not CRAN (yet)
+yearn(laser) # A package that was on CRAN but has been removed.
 }
 
 }
