@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -51,6 +52,12 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -78,7 +85,7 @@
     <p>Do yearn on a single package</p>
     
 
-    <pre class="usage"><span class='fu'>yearn</span>(<span class='no'>pkg</span>, <span class='kw'>maxdist</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>username.pref</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"cran"</span>, <span class='st'>"ropensci"</span>, <span class='st'>"rstudio"</span>,
+    <pre class="usage"><span class='fu'>yearn</span>(<span class='no'>pkg</span>, <span class='kw'>maxdist</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>username.pref</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"cran"</span>, <span class='st'>"ropensci"</span>, <span class='st'>"rstudio"</span>,
   <span class='st'>"tidyverse"</span>, <span class='st'>"hadley"</span>, <span class='st'>"yihui"</span>, <span class='st'>"RcppCore"</span>, <span class='st'>"eddelbuettel"</span>, <span class='st'>"ropenscilabs"</span>,
   <span class='st'>"hrbrmstr"</span>, <span class='st'>"thej022214"</span>, <span class='st'>"bomeara"</span>))</pre>
     
@@ -109,9 +116,10 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
-  <span class='fu'>yearn</span>(<span class='no'>TreEvo</span>) <span class='co'># A package on github, not CRAN (yet)</span>
-})</div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>yearn</span>(<span class='no'>laser</span>) <span class='co'># A package that was on CRAN but has been removed.</span>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -134,7 +142,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

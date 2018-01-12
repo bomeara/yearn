@@ -29,6 +29,12 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
+  <a href="index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li>
@@ -46,26 +52,27 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    <div id="yearn" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#yearn" class="anchor"></a>yearn</h1></div>
-<p>Sometimes you just yearn for a package you need to use. You feel guilty about this, but just want to load it with <code>library()</code> and have it just work – and if you don’t have the package installed already, simply have the script install it first without having to figure out if it’s on CRAN, Bioconductor, or GitHub, etc. If you’re in this sort of mood, you probably don’t care about case: is it <code>phangorn</code> or <code>Phangorn</code> or ’phangoRn` – you might even be willing to tolerate a letter or two off (though not by default).</p>
+    <section class="level1"><div class="page-header"><h1>yearn</h1></div>
+<p>Sometimes you just yearn for a package you need to use. You feel guilty about this, but just want to load it with <code>library()</code> and have it just work – and if you don’t have the package installed already, simply have the script install it first without having to figure out if it’s on CRAN, Bioconductor, or GitHub, etc. If you’re in this sort of mood, you probably don’t care about case: is it <code>phangorn</code> or <code>Phangorn</code> or <code>phangoRn</code> – you might even be willing to tolerate a letter or two off (though not by default).</p>
 <p>This is sloppy. You should know what packages you need, install them, consider keeping track of versions with <a href="https://rstudio.github.io/packrat/">packrat</a> or similar. But for a quick and dirty analysis, or when facing a classroom of angry students who are trying to pull in packages for a class exercise, this can be handy (“Download these from CRAN; go to Bioconductor for this; then get this new package that’s only on GitHub – no, it’s <code>install_github()</code> not <code>install.github()</code>, but, yeah, <code>install.packages()</code> – wait, where are you going, class?”). So, to do this,</p>
-<pre><code>devtools::install_github("bomeara/yearn")</code></pre>
+<pre><code><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">devtools::install_github("bomeara/yearn")</a></code></pre>
 <p>And then call a package you want with just</p>
 <pre><code>library(yearn)
 yearn(pkgdown)</code></pre>
-<p>where <code>pkgdown</code> is just an example of a potential package (one used to create the <code>yearn</code> package webpage, in fact). Note that currently the package name should be a bare string, not in quotes.</p>
+<p>where <code>pkgdown</code> is just an example of a potential package (one used to create the <code>yearn</code> package webpage, in fact). Note that currently the package name should be a bare string, not in quotes. Another option, once <code>yearn</code> has been installed, is to use the <code>::</code> syntax: <code><a href="http://www.rdocumentation.org/packages/yearn/topics/yearn">yearn::yearn(pkgdown)</a></code> without having to do the library call first.</p>
 <p>The package goes through a standard procedure when you do this:</p>
-<p>1) It tries to load the package with <code>require()</code>. If it works, it’s done. 2) If not, it tries to find a matching package name (case insensitive) from CRAN and Bioconductor. If you pass a <code>maxdist</code> argument to <code><a href="reference/yearn.html">yearn()</a></code>, it will allow up to that many spelling mismatches. By default this is zero. If it finds a match, it installs it, then tries to load it. 3) If this fails, it looks on github. It first looks in the github CRAN mirror – this includes packages that used to be on CRAN. It installs it there if it finds it. 4) Otherwise, it looks elsewhere on GitHub. If there’s one R package that matches, it simply installs it. If there are several, it picks one based on whose repository it’s in: an ROpenSci repo is probably more likely to have what you want than a random fork of it a student made for a class assignment. The list of github users that are my guesses can be seen in <code><a href="reference/yearn.html">?yearn</a></code>. If you’re using this to teach a class using your software, you might want to add your user name to the list.</p>
+<p>1) It tries to load the package with <code>require()</code>. If it works, it’s done. 2) If not, it tries to find a matching package name (case insensitive) from CRAN and Bioconductor. If you pass a <code>maxdist</code> argument to <code><a href="reference/yearn.html">yearn()</a></code>, it will allow up to that many spelling mismatches. By default this is zero. If it finds a match, it installs it, then tries to load it. 3) If this fails, it looks on GitHub. It first looks in the GitHub CRAN mirror – this includes packages that used to be on CRAN. It installs it there if it finds it. 4) Otherwise, it looks elsewhere on GitHub. If there’s one R package that matches, it simply installs it. If there are several, it picks one based on whose repository it’s in: an ROpenSci repo is probably more likely to have what you want than a random fork of it a student made for a class assignment. The list of github users that are my guesses can be seen in <code><a href="reference/yearn.html">?yearn</a></code>. If you’re using this to teach a class using your software, you might want to add your user name to the list.</p>
 <p>This package uses some key functions from the <a href="https://CRAN.R-project.org/package=githubinstall">githubinstall</a> package on CRAN, written by Koji Makiyama, Atsushi Hayakawa, Shinya Uryu, Hiroaki Yutani, and Nagi Teramo. However, it also incorporates checking CRAN and Bioconductor first, and it does not offer the interactivity of the <code>githubinstall</code> package in cases of multiple matches (it also is pickier about spelling mismatches than <code>githubinstall</code> by default).</p>
 <p>Again, use at your own risk. This package is chatty about potential problems and where it’s downloading packages, but it could be that you’re loading a package that has the same name of what you want but does something different, someone could have done something malicious with a package they put on GitHub, etc.</p>
+<p>Work on this was partially funded by NSF CAREER award 1453424 to Brian O’Meara (the package is useful for the class I teach as part of that award).</p>
+</section>
 </div>
-  </div>
 
   <div class="col-md-3" id="sidebar">
     <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=yearn">https://​cran.r-project.org/​package=yearn</a>
+</li>
 <li>Browse source code at <br><a href="http://www.github.com/bomeara/yearn">http://​www.github.com/​bomeara/​yearn</a>
 </li>
 </ul>
@@ -84,7 +91,7 @@ yearn(pkgdown)</code></pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
